@@ -130,17 +130,17 @@ if (signupForm) {
 // Handle Login
 if (loginForm) {
     // Auto-fill from Remember Me on page load
-    const savedEmail = localStorage.getItem('rememberedEmail');
-    if (savedEmail) {
-        const emailInput = document.getElementById('modal-login-username');
+    const savedIdentifier = localStorage.getItem('rememberedIdentifier');
+    if (savedIdentifier) {
+        const identifierInput = document.getElementById('modal-login-identifier');
         const rememberCheck = document.getElementById('remember-me-check');
-        if (emailInput) emailInput.value = savedEmail;
+        if (identifierInput) identifierInput.value = savedIdentifier;
         if (rememberCheck) rememberCheck.checked = true;
     }
 
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('modal-login-username').value;
+        const identifier = document.getElementById('modal-login-identifier').value;
         const password = document.getElementById('modal-login-password').value;
         const rememberMe = document.getElementById('remember-me-check');
 
@@ -152,7 +152,7 @@ if (loginForm) {
             const response = await fetch(`${API_URL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ identifier, password })
             });
             
             const data = await response.json();
@@ -160,9 +160,9 @@ if (loginForm) {
             if (response.ok) {
                 // Save or clear Remember Me
                 if (rememberMe && rememberMe.checked) {
-                    localStorage.setItem('rememberedEmail', email);
+                    localStorage.setItem('rememberedIdentifier', identifier);
                 } else {
-                    localStorage.removeItem('rememberedEmail');
+                    localStorage.removeItem('rememberedIdentifier');
                 }
 
                 showAuthMessage(loginForm, 'Login successful! Welcome back ' + data.user.username, false);

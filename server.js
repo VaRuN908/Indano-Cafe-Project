@@ -4,12 +4,24 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const path = require('path');
 
+const crypto = require('crypto');
+
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
+
+// ── Admin Credentials ──
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin1234';
+
+// Store active admin sessions (in-memory)
+const adminSessions = new Map();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve static frontend files from the "Indiano cafe" folder
+app.use(express.static(path.join(__dirname, 'Indiano cafe')));
 
 // Initialize SQLite Database
 const dbPath = path.resolve(__dirname, 'users.db');
@@ -52,15 +64,12 @@ app.post('/auth/signup', async (req, res) => {
     }
 
     try {
-        // Hash the password securely with bcrypt
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        // Insert into database
         const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
         db.run(sql, [username.trim(), email.trim(), hashedPassword], function(err) {
             if (err) {
-                // Handle unique constraint errors
                 if (err.message.includes('UNIQUE constraint failed: users.username')) {
                     return res.status(409).json({ error: 'Username is already taken.' });
                 }
@@ -87,33 +96,35 @@ app.post('/auth/signup', async (req, res) => {
 // LOGIN ROUTE
 // ============================================
 app.post('/auth/login', (req, res) => {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
 
-    if (!email || !password) {
-        return res.status(400).json({ error: 'Please provide both email and password.' });
+    if (!identifier || !password) {
+        return res.status(400).json({ error: 'Please provide your username/email and password.' });
     }
 
-    const sql = `SELECT * FROM users WHERE email = ?`;
+    // Auto-detect: if it contains '@', search by email; otherwise by username
+    const isEmail = identifier.includes('@');
+    const sql = isEmail
+        ? `SELECT * FROM users WHERE email = ?`
+        : `SELECT * FROM users WHERE username = ?`;
     
-    db.get(sql, [email.trim()], async (err, user) => {
+    db.get(sql, [identifier.trim()], async (err, user) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Internal server error during login.' });
         }
         
         if (!user) {
-            return res.status(401).json({ error: 'No account found with this email. Please sign up first!' });
+            return res.status(401).json({ error: 'No account found. Please sign up first!' });
         }
 
         try {
-            // Compare the provided password with the hashed password in the DB
             const isMatch = await bcrypt.compare(password, user.password);
             
             if (!isMatch) {
                 return res.status(401).json({ error: 'Incorrect password. Please try again.' });
             }
 
-            // Successful login (In a real app, you would generate a JWT token here)
             res.json({ 
                 success: true, 
                 message: 'Login successful!',
@@ -131,7 +142,64 @@ app.post('/auth/login', (req, res) => {
     });
 });
 
+// ============================================
+// ADMIN LOGIN
+// ============================================
+app.post('/auth/admin/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        const token = crypto.randomBytes(32).toString('hex');
+        adminSessions.set(token, { loginTime: Date.now() });
+        return res.json({ success: true, token });
+    }
+
+    return res.status(401).json({ error: 'Invalid admin credentials.' });
+});
+
+// Admin auth middleware
+const requireAdmin = (req, res, next) => {
+    const token = req.headers['x-admin-token'];
+    if (!token || !adminSessions.has(token)) {
+        return res.status(403).json({ error: 'Unauthorized. Please log in as admin.' });
+    }
+    next();
+};
+
+// ============================================
+// ADMIN API — GET ALL USERS (protected)
+// ============================================
+app.get('/auth/admin/users', requireAdmin, (req, res) => {
+    const sql = `SELECT id, username, email, created_at FROM users ORDER BY created_at DESC`;
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Failed to retrieve users.' });
+        }
+        res.json({ success: true, users: rows, total: rows.length });
+    });
+});
+
+// ============================================
+// ADMIN API — DELETE A USER (protected)
+// ============================================
+app.delete('/auth/admin/users/:id', requireAdmin, (req, res) => {
+    const userId = req.params.id;
+    const sql = `DELETE FROM users WHERE id = ?`;
+    db.run(sql, [userId], function(err) {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Failed to delete user.' });
+        }
+        if (this.changes === 0) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+        res.json({ success: true, message: 'User deleted successfully.' });
+    });
+});
+
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Auth Backend running on http://localhost:${PORT}`);
+    console.log(`Indiano Cafe Server running on http://localhost:${PORT}`);
+    console.log(`Admin Dashboard: http://localhost:${PORT}/admin.html`);
 });
