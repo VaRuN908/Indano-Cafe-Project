@@ -1,216 +1,375 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="poppins">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="poppins" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
     <title>Indiao Cafe</title>
-</head>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="" />
+      </div>
+      <input
+        type="checkbox"
+        id="sidebar-active"
+        title="Toggle sidebar menu"
+        aria-label="Toggle sidebar menu"
+      />
+      <label for="sidebar-active" class="open-sidebar-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="32px"
+          viewBox="0 -960 960 960"
+          width="32px"
+          fill="#e3e3e3"
+        >
+          <path
+            d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"
+          />
+        </svg>
+      </label>
+      <label for="sidebar-active" id="overlay"></label>
+      <div class="menu">
+        <label for="sidebar-active" class="close-sidebar-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="32px"
+            viewBox="0 -960 960 960"
+            width="32px"
+            fill="#e3e3e3"
+          >
+            <path
+              d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"
+            />
+          </svg>
+        </label>
+        <ul>
+          <li><a href="#Home" class="active">Home</a></li>
+          <li><a href="#About">About</a></li>
+          <li><a href="#Menu">Menu</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#Contact">Contact</a></li>
+          <li><a href="#" id="login-btn">Login</a></li>
+        </ul>
+      </div>
+    </nav>
 
-<body>
     <header id="Home">
-        <div class="he">
-            <img src="images/background2.png" alt="" class="header_1">
-            <div class="navbar">
-                <div class="logo">
-                    <img src="images/logo.png" alt="">
-                </div>
-                <input type="checkbox" id="sidebar-active" title="Toggle sidebar menu" aria-label="Toggle sidebar menu">
-                <label for="sidebar-active" class="open-sidebar-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px"
-                        fill="#e3e3e3">
-                        <path
-                            d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z" />
-                    </svg>
-                </label>
-
-                <label for="sidebar-active" id="overlay"></label>
-                <div class="menu">
-                    <label for="sidebar-active" class="close-sidebar-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px"
-                            fill="#e3e3e3">
-                            <path
-                                d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z" />
-                        </svg>
-                    </label>
-                    <ul>
-
-
-
-                        <li><a href="#Home" class="active">Home</a></li>
-                        <li><a href="#About">About</a></li>
-                        <li><a href="#Menu">Menu</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#Contact">Contact</a></li>
-
-                    </ul>
-
-                </div>
-            </div>
-            <div class="abso">
-                <div class="cele">
-                    <h1>Celebrate<br><span>Your Break</span></h1>
-                    <p>
-                        Enjoy a couple of minutes of your precise break time
-                    </p>
-                </div>
-                <div class="option">
-                    <a href="#" class="yellow">about us</a>
-                    <a href="#"><span>Call Now</span></a>
-                </div>
-            </div>
+      <div class="he">
+        <img src="images/background2.png" alt="" class="header_1" />
+        <div class="abso">
+          <div class="cele">
+            <h1>Celebrate<br /><span>Your Break</span></h1>
+            <p>Enjoy a couple of minutes of your precise break time</p>
+          </div>
+          <div class="option">
+            <a href="#" class="yellow">about us</a>
+            <a href="#"><span>Call Now</span></a>
+          </div>
         </div>
+      </div>
     </header>
-
     <main>
-        <div class="About" id="About">
-            <div class="abo">
-                <div class="ab">
-                    <h1>About our cafe</h1>
-                    <p>
-                        Our cafe is a cozy, welcoming spot that's the perfect blend of modern comfort and rustic charm,
-                        with an emphasis on high-quality coffee and a relaxing atmosphere. The warm,
-                        inviting space is filled with the rich aroma of freshly brewed coffee, soft lighting, and
-                        comfortable seating, from rustic wooden tables to plush sofas. It's a place to connect,
-
-                    </p>
-                </div>
-            </div>
-            <div class="aboim">
-                <div class="abo_img">
-                    <img src="images/f.webp" alt="">
-                </div>
-            </div>
+      <div class="main-2" id="Menu">
+        <div class="menu-header">
+          <h2>Popular Menu</h2>
+          <a href="#" class="see-more"
+            >Some more <i class="fa-solid fa-arrow-right"></i
+          ></a>
         </div>
-        <div class="main-2" id="Menu">
-            <span>
-                <h2>Popular Menu</h2>
-                <p>Some more</p>
-            </span>
-            <div class="popular-menu">
-                <div class="menu-spe">
-                    <img src="images/dosa.jpeg" alt="">
-                </div>
-                <div class="menu-spe">
-                    <img src="images/c.jpeg" alt="">
-                </div>
-                <div class="menu-spe">
-                    <img src="images/cake.jpeg" alt="">
-                </div>
-                <div class="menu-spe">
-                    <img src="images/samose.jpeg" alt="">
-                </div>
-            </div>
+        <div class="popular-menu">
+          <div class="menu-spe">
+            <img src="images/dosa.jpeg" alt="" />
+            <p>South Indian</p>
+          </div>
+          <div class="menu-spe">
+            <img src="images/c.jpeg" alt="" />
+            <p>Indian Drinks</p>
+          </div>
+          <div class="menu-spe">
+            <img src="images/cake.jpeg" alt="" />
+            <p>Deserts</p>
+          </div>
+          <div class="menu-spe">
+            <img src="images/samose.jpeg" alt="" />
+            <p>North Indian</p>
+          </div>
         </div>
-        <div class="main-3">
-
-            <body>
-                <form action="">
-                    <div class="box1">
-                        <label for="">Username</label>
-                        <input type="text" placeholder="Username" id="inp1">
-                    </div>
-                    <div class="box2">
-                        <label for="">Password</label>
-                        <input type="password" placeholder="Password" id="inp2">
-
-                    </div>
-
-                    <p id="msg"></p>
-
-                    <div class="btn">
-                        <button type="submit" id="btn">Login</button>
-                    </div>
-                </form>
+      </div>
+      <div class="About" id="About">
+        <div class="abo">
+          <div class="ab">
+            <h1>About our cafe</h1>
+            <p>
+              Our cafe is a cozy, welcoming spot that's the perfect blend of
+              modern comfort and rustic charm, with an emphasis on high-quality
+              coffee and a relaxing atmosphere. The warm, inviting space is
+              filled with the rich aroma of freshly brewed coffee, soft
+              lighting, and comfortable seating, from rustic wooden tables to
+              plush sofas. It's a place to connect,
+            </p>
+          </div>
         </div>
+        <div class="aboim">
+          <div class="abo_img">
+            <img src="images/f.webp" alt="" />
+          </div>
+        </div>
+      </div>
     </main>
     <footer id="Contact">
-
-        <div class="foot">
-            <img src="images/logo.png" alt="">
-            <div class="icons">
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="linking">
-                    <i class="fa-brands fa-facebook-f" title="Facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="linking">
-                    <i class="fa-brands fa-instagram" title="Instagram"></i>
-                </a>
-                <a href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer" class="linking">
-                    <i class="fa-brands fa-x-twitter" title="Twitter or X"></i>
-                </a>
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="linking">
-                    <i class="fa-brands fa-youtube" title="Youtube"></i>
-                </a>
-            </div>
-            <p class="gmail">Indianocafe@gmail.com | Contact: 12345 67890 <br>
-                Privacy Policy | Terms & Conditions
-            </p>
+      <div class="foot">
+        <img src="images/logo.png" alt="" />
+        <div class="icons">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linking"
+            aria-label="Visit our Facebook page"
+          >
+            <i class="fa-brands fa-facebook-f" title="Facebook"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linking"
+            aria-label="Visit our Instagram page"
+          >
+            <i class="fa-brands fa-instagram" title="Instagram"></i>
+          </a>
+          <a
+            href="https://www.twitter.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linking"
+            aria-label="Visit our Twitter page"
+          >
+            <i class="fa-brands fa-x-twitter" title="Twitter or X"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linking"
+            aria-label="Visit our Youtube page"
+          >
+            <i class="fa-brands fa-youtube" title="Youtube"></i>
+          </a>
         </div>
+        <p class="gmail">
+          Indianocafe@gmail.com | Contact: 12345 67890 <br />
+          Privacy Policy | Terms &amp; Conditions
+        </p>
+      </div>
     </footer>
-
     <!-- ═══════════════════════════════════════════════
        SMART ETHICAL AI CAFE CHATBOT
        ═══════════════════════════════════════════════ -->
-    
     <!-- Floating Action Button -->
-    <button id="chatbot-fab" class="chatbot-fab" title="Open Chat" aria-label="Open Chat">
-        <i class="fa-solid fa-comment-dots"></i>
+    <button
+      type="button"
+      id="chatbot-fab"
+      class="chatbot-fab"
+      title="Open Chat"
+      aria-label="Open Chat"
+    >
+      <i class="fa-solid fa-comment-dots"></i>
     </button>
-
     <div id="chatbot-panel" class="chatbot-panel">
-        <!-- Header -->
-        <div class="chatbot-header" id="chatbot-header">
-            <div class="chatbot-header-info">
-                <div class="chatbot-avatar">🤖</div>
-                <div>
-                    <div class="chatbot-title">Smart Ethical AI Cafe</div>
-                    <div class="chatbot-status">
-                        <span class="chatbot-status-dot"></span> Online
-                    </div>
-                </div>
+      <!-- Header -->
+      <div class="chatbot-header" id="chatbot-header">
+        <div class="chatbot-header-info">
+          <div class="chatbot-avatar">🤖</div>
+          <div>
+            <div class="chatbot-title">Smart Ethical AI Cafe</div>
+            <div class="chatbot-status">
+              <span class="chatbot-status-dot"></span> Online
             </div>
-            <div class="chatbot-header-actions">
-                <button id="chatbot-speech-btn" class="chatbot-header-btn" title="Toggle Voice" aria-label="Toggle Voice">
-                    <i class="fa-solid fa-volume-high"></i>
-                </button>
-                <button id="chatbot-minimize-btn" class="chatbot-header-btn" title="Minimize" aria-label="Minimize Chat">
-                    <i class="fa-solid fa-minus"></i>
-                </button>
-                <button id="chatbot-close-btn" class="chatbot-header-btn" title="Close" aria-label="Close Chat">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+          </div>
+        </div>
+        <div class="chatbot-header-actions">
+          <button
+            type="button"
+            id="chatbot-speech-btn"
+            class="chatbot-header-btn"
+            title="Toggle Voice"
+            aria-label="Toggle Voice"
+          >
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <button
+            type="button"
+            id="chatbot-minimize-btn"
+            class="chatbot-header-btn"
+            title="Minimize"
+            aria-label="Minimize Chat"
+          >
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <button
+            type="button"
+            id="chatbot-close-btn"
+            class="chatbot-header-btn"
+            title="Close"
+            aria-label="Close Chat"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Chat Body -->
+      <div id="chatbot-body" class="chatbot-body"></div>
+      <!-- Quick Suggestions -->
+      <div id="chatbot-suggestions" class="chatbot-suggestions"></div>
+      <!-- Input Bar -->
+      <div class="chatbot-input-bar">
+        <!-- Stop Button (Floating above) -->
+        <button
+          type="button"
+          id="chatbot-stop-btn"
+          class="chatbot-stop-btn"
+          title="Stop Generating"
+        >
+          <i class="fa-solid fa-stop"></i> Stop
+        </button>
+        <input
+          type="text"
+          id="chatbot-input"
+          class="chatbot-input"
+          placeholder="Ask about our menu..."
+          autocomplete="off"
+        />
+        <button
+          type="button"
+          id="chatbot-mic-btn"
+          class="chatbot-mic-btn"
+          title="Voice Input"
+          aria-label="Voice Input"
+        >
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button
+          type="button"
+          id="chatbot-send-btn"
+          class="chatbot-send-btn"
+          title="Send Message"
+          aria-label="Send Message"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+       MODERN GLASSMORPHISM AUTH MODAL
+       ═══════════════════════════════════════════════ -->
+    <div class="auth-modal-overlay" id="auth-modal">
+      <div class="auth-modal-content">
+        <button
+          type="button"
+          class="close-modal"
+          id="close-modal"
+          title="Close"
+          aria-label="Close Modal"
+        >
+          &times;
+        </button>
+
+        <div class="auth-toggle">
+          <button type="button" class="toggle-btn active" id="show-login">
+            Login
+          </button>
+          <button type="button" class="toggle-btn" id="show-signup">
+            Sign Up
+          </button>
         </div>
 
-        <!-- Chat Body -->
-        <div id="chatbot-body" class="chatbot-body"></div>
+        <!-- Login Form -->
+        <form id="modal-login-form" class="auth-form active-form">
+          <h2>Welcome Back</h2>
+          <div class="input-group">
+            <label for="modal-login-username">Username</label>
+            <input
+              type="text"
+              placeholder="Enter your username"
+              id="modal-login-username"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="modal-login-password">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              id="modal-login-password"
+              required
+              minlength="8"
+              autocomplete="current-password"
+            />
+          </div>
+          <div class="remember-me">
+            <input type="checkbox" id="remember-me-check" />
+            <label for="remember-me-check">Remember me</label>
+          </div>
+          <button type="submit" class="auth-submit-btn">Login</button>
+        </form>
 
-        <!-- Quick Suggestions -->
-        <div id="chatbot-suggestions" class="chatbot-suggestions"></div>
-
-        <!-- Input Bar -->
-        <div class="chatbot-input-bar">
-            <!-- Stop Button (Floating above) -->
-            <button id="chatbot-stop-btn" class="chatbot-stop-btn" title="Stop Generating">
-                <i class="fa-solid fa-stop"></i> Stop
-            </button>
-
-            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Ask about our menu..." autocomplete="off" />
-            
-            <button id="chatbot-mic-btn" class="chatbot-mic-btn" title="Voice Input" aria-label="Voice Input">
-                <i class="fa-solid fa-microphone"></i>
-            </button>
-            <button id="chatbot-send-btn" class="chatbot-send-btn" title="Send Message" aria-label="Send Message">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
-        </div>
+        <!-- Sign Up Form (Hidden by default) -->
+        <form id="modal-signup-form" class="auth-form hidden-form">
+          <h2>Create Account</h2>
+          <div class="input-group">
+            <label for="modal-signup-username">Username</label>
+            <input
+              type="text"
+              placeholder="Choose a username"
+              id="modal-signup-username"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="modal-signup-email">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              id="modal-signup-email"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="modal-signup-password">Password</label>
+            <input
+              type="password"
+              placeholder="Create a password"
+              id="modal-signup-password"
+              required
+              autocomplete="new-password"
+            />
+          </div>
+          <div class="input-group">
+            <label for="modal-signup-confirm">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm your password"
+              id="modal-signup-confirm"
+              required
+              autocomplete="new-password"
+            />
+          </div>
+          <button type="submit" class="auth-submit-btn">Sign Up</button>
+        </form>
+      </div>
     </div>
 
     <script src="script.js"></script>
     <script src="chatbot.js"></script>
-</body>
-
+  </body>
 </html>
