@@ -20,6 +20,21 @@ const db = new sqlite3.Database(DB_PATH, (err) => {
                 console.log('Users table created or already exists.');
             }
         });
+
+        db.run(`CREATE TABLE IF NOT EXISTS menu_items (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            price TEXT NOT NULL,
+            description TEXT,
+            category TEXT NOT NULL,
+            image_url TEXT
+        )`, (err) => {
+            if (err) {
+                console.error('Error creating menu_items table:', err.message);
+            } else {
+                console.log('Menu_items table created or already exists.');
+            }
+        });
     }
 });
 

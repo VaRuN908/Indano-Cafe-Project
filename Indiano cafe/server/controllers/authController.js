@@ -6,6 +6,10 @@ exports.signup = (req, res) => {
     if (!username || !email || !password) {
         return res.status(400).json({ message: 'All fields are required.' });
     }
+    
+    if (password.length < 8 || password.length > 72) {
+        return res.status(400).json({ message: 'Password must be between 8 and 72 characters long.' });
+    }
 
     User.findByUsername(username, (err, user) => {
         if (err) return res.status(500).json({ message: 'Database error.', error: err.message });
