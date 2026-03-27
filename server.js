@@ -3,6 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const path = require('path');
+const fs = require('fs');
 
 const crypto = require('crypto');
 const multer = require('multer');
@@ -23,12 +24,16 @@ app.use(express.json());
 
 // Serve static frontend files from the "Indiano cafe" folder
 app.use(express.static(path.join(__dirname, 'Indiano cafe')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads')));
 
 // Configure multer storage
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/');
+        const uploadPath = process.env.VERCEL ? '/tmp/uploads/' : 'uploads/';
+        if (process.env.VERCEL && !fs.existsSync('/tmp/uploads/')) {
+            fs.mkdirSync('/tmp/uploads/', { recursive: true });
+        }
+        cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname.replace(/\s+/g, '_'));
@@ -41,7 +46,17 @@ const upload = multer({
 });
 
 // Initialize SQLite Database
-const dbPath = path.resolve(__dirname, 'users.db');
+let dbPath = path.resolve(__dirname, 'users.db');
+if (process.env.VERCEL) {
+    dbPath = '/tmp/users.db';
+    if (!fs.existsSync(dbPath) && fs.existsSync(path.resolve(__dirname, 'users.db'))) {
+        try {
+            fs.copyFileSync(path.resolve(__dirname, 'users.db'), dbPath);
+        } catch (err) {
+            console.error('Error copying database in Vercel environment:', err);
+        }
+    }
+}
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Error connecting to SQLite database:', err.message);
@@ -314,7 +329,10 @@ app.delete('/auth/admin/users/:id', requireAdmin, (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Indiano Cafe Server running on http://localhost:${PORT}`);
-    console.log(`Admin Dashboard: http://localhost:${PORT}/admin.html`);
-});
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Indiano Cafe Server running on http://localhost:${PORT}`);
+        console.log(`Admin Dashboard: http://localhost:${PORT}/admin.html`);
+    });
+}
+module.exports = app;
