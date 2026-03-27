@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="chatbot.js"></script>
+    <link rel="stylesheet" href="chatbot.css" />
+</head>
+<body>
+     <!-- ═══════════════════════════════════════════════
+       SMART ETHICAL AI CAFE CHATBOT
+       ═══════════════════════════════════════════════ -->
+    <!-- Floating Action Button -->
+    <button
+      type="button"
+      id="chatbot-fab"
+      class="chatbot-fab"
+      title="Open Chat"
+      aria-label="Open Chat"
+    >
+      <i class="fa-solid fa-comment-dots"></i>
+    </button>
+    <div id="chatbot-panel" class="chatbot-panel">
+      <!-- Header -->
+      <div class="chatbot-header" id="chatbot-header">
+        <div class="chatbot-header-info">
+          <div class="chatbot-avatar">🤖</div>
+          <div>
+            <div class="chatbot-title">Smart Ethical AI Cafe</div>
+            <div class="chatbot-status">
+              <span class="chatbot-status-dot"></span> Online
+            </div>
+          </div>
+        </div>
+        <div class="chatbot-header-actions">
+          <button
+            type="button"
+            id="chatbot-speech-btn"
+            class="chatbot-header-btn"
+            title="Toggle Voice"
+            aria-label="Toggle Voice"
+          >
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <button
+            type="button"
+            id="chatbot-minimize-btn"
+            class="chatbot-header-btn"
+            title="Minimize"
+            aria-label="Minimize Chat"
+          >
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <button
+            type="button"
+            id="chatbot-close-btn"
+            class="chatbot-header-btn"
+            title="Close"
+            aria-label="Close Chat"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Chat Body -->
+      <div id="chatbot-body" class="chatbot-body"></div>
+      <!-- Quick Suggestions -->
+      <div id="chatbot-suggestions" class="chatbot-suggestions"></div>
+      <!-- Input Bar -->
+      <div class="chatbot-input-bar">
+        <!-- Stop Button (Floating above) -->
+        <button
+          type="button"
+          id="chatbot-stop-btn"
+          class="chatbot-stop-btn"
+          title="Stop Generating"
+        >
+          <i class="fa-solid fa-stop"></i> Stop
+        </button>
+        <input
+          type="text"
+          id="chatbot-input"
+          class="chatbot-input"
+          placeholder="Ask about our menu..."
+          autocomplete="off"
+        />
+        <button
+          type="button"
+          id="chatbot-mic-btn"
+          class="chatbot-mic-btn"
+          title="Voice Input"
+          aria-label="Voice Input"
+        >
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button
+          type="button"
+          id="chatbot-send-btn"
+          class="chatbot-send-btn"
+          title="Send Message"
+          aria-label="Send Message"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+</body>
+</html>
